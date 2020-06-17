@@ -1,4 +1,4 @@
-package me.kickscar.youtube.api.practices;
+package me.kickscar.youtube.api.without.googlelibs;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.StoredCredential;

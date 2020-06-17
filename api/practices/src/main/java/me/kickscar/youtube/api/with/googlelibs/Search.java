@@ -1,4 +1,4 @@
-package me.kickscar.youtube.api.practices;
+package me.kickscar.youtube.api.with.googlelibs;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
@@ -38,7 +38,7 @@ public class Search {
         Properties properties = new EncryptableProperties(encryptor);
 
         try {
-            InputStream in = Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
+            InputStream in = me.kickscar.youtube.api.without.googlelibs.Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
             properties.load(in);
         } catch (IOException e) {
             System.err.println("There was an error reading " + PROPERTIES_FILENAME + ": " + e.getCause()
@@ -137,6 +137,4 @@ public class Search {
             }
         }
     }
-
-
 }
