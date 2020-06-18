@@ -52,7 +52,7 @@ public class Search {
 
         // 3. processing response
         int responseCode = httpURLConnection.getResponseCode();
-        if(responseCode != 200) {
+        if(responseCode != HttpURLConnection.HTTP_OK) {
             String responseMessage = httpURLConnection.getResponseMessage();
             System.out.println(responseCode + " " + responseMessage);
             return;
