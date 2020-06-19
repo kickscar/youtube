@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta
 import json
 import os
-from .api import api
-
+from scrapetool.api import api
 
 RESULT_DIRECTORY = '__results__/crawing'
 
@@ -35,7 +34,7 @@ def preprocess_post(post):
     post['created_time'] = kst.strftime('%Y-%m-%d %H:%M:%S')
 
 
-def crawling(pagename, since, until):
+def scrapping(pagename, since, until):
     results = []
     filename = '%s/fb_%s_%s_%s.json' % (RESULT_DIRECTORY, pagename, since, until)
 
