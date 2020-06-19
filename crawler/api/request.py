@@ -4,15 +4,7 @@ from urllib.request import Request, urlopen
 from datetime import *
 
 
-def xml_request():
-    pass
-
-
-def html_request():
-    pass
-
-
-def json_request(
+def jsonrequest(
         url='',
         encoding='utf-8',
         success=None,
