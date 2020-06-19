@@ -15,11 +15,11 @@ searchparam = {
         'videoLicense': 'any',
         'videoSyndicated': 'any',
         'videoType': 'any',
-        'key': 'AIzaSyDnYCeEqOiPkcqd2RUnkl6kDc9uVLOPUV4',
+        'key': '',
     },
     'options': [
-        # {'publishedAfter': '2019-01-01T00:00:00Z', 'publishedBefore': '2019-01-01T23:59:59Z', 'q': '패키지여행'}
-        {'q': '여행'}
+        {'publishedAfter': '2019-01-01T00:00:00Z', 'publishedBefore': '2019-03-31T23:59:59Z', 'q': '여행'}
+        # {'q': '여행'}
     ]
 }
 
