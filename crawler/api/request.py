@@ -12,13 +12,14 @@ def jsonrequest(
     try:
         resp = urlopen(Request(url))
         if resp.getcode() == 200:
-            resp_body = resp.read().decode(encoding)
-            resp_json = json.loads(resp_body)
+            respbody = resp.read().decode(encoding)
+            respjson = json.loads(respbody)
 
             print('%s : success for request[%s]' % (datetime.now(), url))
 
             if callable(success) is False:
-                return resp_json
-            success(resp_json)
+                return respjson
+
+            success(respjson)
     except Exception as e:
         callable(error) and error('%s %s' % (str(e), url))

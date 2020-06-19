@@ -3,7 +3,10 @@ import scrapetool
 
 
 def d(data):
-    print(data)
+    for video in data:
+        print(video['id'])
+
+    print('================================')
 
 
 if __name__ == '__main__':
