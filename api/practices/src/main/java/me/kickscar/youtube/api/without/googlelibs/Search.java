@@ -137,7 +137,9 @@ public class Search {
 
         HttpURLConnection httpURLConnection = (HttpURLConnection)(new URL(spec).openConnection());
         httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestProperty("User-Agent", "yt-crawler-functional-prototype");
         httpURLConnection.setRequestProperty("Accept", "application/json");
+
 
         // 3. processing response
         int responseCode = httpURLConnection.getResponseCode();

@@ -1,25 +1,30 @@
 import sys
-import json
-from urllib.request import Request, urlopen
+import requests
 from datetime import *
+from urllib.parse import urlencode
+
+
+def xmlrequest():
+    pass
 
 
 def jsonrequest(
         url='',
-        encoding='utf-8',
+        headers={},
+        params={},
         success=None,
         error=lambda e: print("%s : %s" % (e, datetime.now()), file=sys.stderr)):
     try:
-        resp = urlopen(Request(url))
-        if resp.getcode() == 200:
-            respbody = resp.read().decode(encoding)
-            respjson = json.loads(respbody)
+        resp = requests.get(url, headers=headers, params=params)
 
-            print('%s : success for request[%s]' % (datetime.now(), url))
+        if resp.status_code == 200:
+            json = resp.json()
+
+            print('%s : success for request[%s?%s]' % (datetime.now(), url, urlencode(params)))
 
             if callable(success) is False:
-                return respjson
+                return json
 
-            success(respjson)
+            success(json)
     except Exception as e:
-        callable(error) and error('%s %s' % (str(e), url))
+        callable(error) and error('%s %s?%s' % (str(e), url, urlencode(params)))
