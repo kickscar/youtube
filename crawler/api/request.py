@@ -16,6 +16,7 @@ def jsonrequest(
         error=lambda e: print("%s : %s" % (e, datetime.now()), file=sys.stderr)):
     try:
         resp = requests.get(url, headers=headers, params=params)
+        resp.raise_for_status()
 
         if resp.status_code == 200:
             json = resp.json()
