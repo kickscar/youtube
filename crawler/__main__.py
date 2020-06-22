@@ -1,9 +1,6 @@
 import api
-import scrapetool
-
-
-def c(data):
-    return data
+import scrapetools
+import mongotools
 
 
 def d(data):
@@ -14,4 +11,9 @@ def d(data):
 
 
 if __name__ == '__main__':
-    scrapetool.scrapping(api.youtube_searchlist, c, d)
+    scrapetools.scrapping(
+        api.youtube_searchlist,     # fetching
+                                    # processing01
+                                    # processing02
+        d                           # storing
+    )
