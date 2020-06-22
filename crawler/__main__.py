@@ -8,7 +8,7 @@ def c(data):
 
 def d(data):
     for video in data:
-        print(video['snippet']['title'])
+        print(video)
 
     print('================================')
 

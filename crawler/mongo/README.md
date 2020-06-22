@@ -48,6 +48,12 @@
      $ launchctl load ~/Library/LaunchAgents/com.mongodb.mongod.plist
      ```
 
+   - 서비스 제거
+
+     ```bash
+     $ launchctl unload ~/Library/LaunchAgents/com.mongodb.mongod.plist
+     ```
+
    - 서비스 실행
 
      ```bash
@@ -64,7 +70,7 @@
 
 #### 1-2. Linux(Operations, Source Compile Installation)
 
-
+==============================
 
 ### 2. Basics
 
@@ -76,7 +82,7 @@
 
 3. Database(instance)
 
-#### 2-1. Shell
+#### 2-1. Shell과 기본 CRUD 연습
 
 ​	MongoDB는 MongoDB 인스탄스와 인스탄스의 여러 데이터베이스에 대한 관리와 조작에 유용한 강력한 JavaScript Shell를 제공한다.
 
@@ -229,21 +235,132 @@
    ​	collection list를 출력하기 위해서는 runCommand(...) 함수를 사용해야 한다. 결과는 firstBatch이름의 배열에 collection 정보가 들어 있다. collection이 하나도 없음을 알 수 있다.
 
 #### 2-2. Data Type
-#### 2-3. CRUD
-#### 2-4. Management
+
+==============================
 
 
+
+#### 2-3. Management
+
+1. MongoDB 시작과 중지
+
+2. Monitoring
+
+3. Security & Authentification
+
+   - admin 계정 추가
+
+     ```javascript
+     > use admin
+     > db.createUser({user:"root", pwd:"password", roles:["root"]})
+     Successfully added user: { "user" : "root", "roles" : [ "root" ] }
+     ```
+
+   - --auth 옵션으로 mongod 실행하기
+
+     Mac에서는 ~/Library/LaunchAgents/com.mongodb.mongod.plist 내용을 다음과 같이 수정하고 재실행한다.
+
+     ```xml
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <plist version="1.0">
+       <dict>
+         <key>Label</key>
+         <string>org.mongo.mongod</string>
+         <key>RunAtLoad</key>
+         <true/>
+         <key>ProgramArguments</key>
+         <array>
+             <string>/Users/kickscar/Applications/mongodb-macos-x86_64-4.2.8/bin/mongod</string>
+             <string>--dbpath</string>
+             <string>/Users/kickscar/mongodb/db</string>
+             <string>--logpath</string>
+             <string>/Users/kickscar/mongodb/log/mongodb.log</string>
+             <string>--auth</string>
+         </array>
+       </dict>
+     </plist>
+     ```
+
+   - admin db 접속
+
+     ```bash
+     > use admin
+     switched to db admin
+     > db.auth('root', 'password')
+     1
+     ```
+
+   - mydb database에 사용자 추가하기
+
+     ```javascript
+     > use admin
+     switched to db admin
+     > db.auth('root', 'password')
+     1
+     > use mydb
+     switched to db mydb
+     > db.createUser( {user:"mydb", pwd:"mydb", roles:["readWrite"]} )
+     Successfully added user: { "user" : "mydb", "roles" : [ "readWrite" ] }
+     ```
+
+   - mydb 사용자로 mydb database 접속하기
+
+     ```bash
+     $ mongo
+     MongoDB shell version v4.2.8
+     connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+     Implicit session: session { "id" : UUID("d9609c18-6273-4043-bae9-0332bbe72695") }
+     MongoDB server version: 4.2.8
+     > use mydb
+     switched to db mydb
+     > db.user.insert({name:'둘리', email:'dooly@kickscar.me'})
+     WriteCommandError({
+     	"ok" : 0,
+     	"errmsg" : "command insert requires authentication",
+     	"code" : 13,
+     	"codeName" : "Unauthorized"
+     })
+     > 
+     ```
+
+     ​	인증 없이 document insert 작업 시 오류가 발생한다.
+
+     ```javascript
+     > use mydb
+     switched to db mydb
+     > db.auth('mydb', 'mydb')
+     1
+     > db.user.insert({name:'둘리', email:'dooly@kickscar.me'})
+     WriteResult({ "nInserted" : 1 })
+     > db.user.find()
+     { "_id" : ObjectId("5ef06036275e8e21067f6937"), "name" : "둘리", "email" : "dooly@kickscar.me" }
+     ```
+
+     ​	인증 후, document insert 작업은 성공한다.
 
 ### 3. Query & Aggregation
 
+==============================
 
 
-### 4. Programming
+
+### 4. MongoDB Programming
 
 #### 4-1. Understanding Driver
-#### 4-1. Python
-#### 4-2. Node
-#### 4-3. Java
+
+1. 객체 ID
+2. BSON
+3. Network
+
+#### 4-2. Python
+
+1. PyMongo
+   - 설치
+2. dwqdwq
+
+#### 4-3. Node
+#### 4-4. Java
 
 
 
