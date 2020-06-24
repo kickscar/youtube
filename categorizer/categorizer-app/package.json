@@ -4,9 +4,10 @@
   "description": "",
   "main": "bin/server.js",
   "scripts": {
-    "start": "npm-run-all --parallel build:frontend run:server",
-    "run:server": "nodemon --inspect -e js,mjs,json,htm,html,css --watch public bin/server.js",
-    "build:frontend": "webpack --watch"
+    "start": "NODE_ENV=development npm-run-all --parallel build:development start:dev",
+    "build": "webpack --mode production",
+    "start:dev": "nodemon --inspect -e js,mjs,json,htm,html,css --watch public bin/server.js",
+    "build:dev": "webpack --watch --mode development"
   },
   "keywords": [],
   "author": "",
