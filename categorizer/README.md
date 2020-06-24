@@ -19,21 +19,27 @@
    $ npm init -y
    ```
 
-2. 패키지 설치
+2. 패키지 설치( for developement)
 
-      ```bash
-   $ npm i -D webpack webpack-cli webpack-dev-server @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader sass-loader react react-dom react-addons-update
+   ```bash
+   $ npm i -D webpack webpack-cli webpack-dev-server @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader sass-loader react react-dom react-addons-update 
    ```
 
-   - 웹팩 패키지 : webpack, webpack-cli, webpack-dev-server
-
+   - 웹팩 패키지 : webpack, webpack-cli
    - babel 패키지 : @babel/core,  @babel/preset-env, @babel/preset-react, babel-loader
-
    - 스타일시트 패키지 : style-loader, css-loader, sass-loader
-
    - react 라이브러리 패키지: react, react-dom, react-addons-update
+   - 개발 도구: nodemon,  npm-run-all, webpack-dev-server(반드시 필요하지 않음)
 
-3. babel 설정(babel.config.json)
+3. 패키지 설치( for production)
+
+   ```bash
+   $ npm i express 
+   ```
+   
+   - 웹서버 프레임워크 : rexpress
+   
+4. babel 설정(babel.config.json)
 
    ```json
    {
@@ -50,14 +56,16 @@
    }
    ```
 
-4. webpack 설정(webpack.config.js)
+5. webpack 설정(webpack.config.js)
 
       ```javascript
       const path = require('path');
+      
       module.exports = {
-          entry: path.resolve('src/index.js'),
+          context: path.resolve('.'),
+          entry: path.resolve('.', 'src', 'index.js'),
           output: {
-              path: path.resolve('public'),
+              path: path.resolve('.', 'public'),
               filename: 'bundle.js'
           },
           module: {
@@ -78,7 +86,7 @@
               }]
           },
           devServer: {
-              contentBase: path.resolve('public'),
+              contentBase: path.resolve('.', 'public'),
               host: '0.0.0.0',
               port: 9999,
               inline: true,
@@ -86,24 +94,35 @@
               hot: false,
               compress: true,
               historyApiFallback: true
-          }    
+          }
       }
       ```
 
-5. package.json scripting
+6. package.json scripting
 
       ```json
       "scripts": {
-          "build": "npx webpack",
-          "start": "npx webpack-dev-server --progress"
+          "start": "npm-run-all --parallel build:frontend run:server",
+          "run:server": "nodemon --inspect -e js,mjs,json,htm,html,css --watch public bin/server.js",
+          "build:frontend": "webpack --watch"
         }
       ```
 
-6. 디렉토리 생성
+7. 디렉토리 생성및 기본 소스 추가
 
       ```bash
       $ mkdir src
       $ mkdir public
+      $ mkdir bin
+      $ mjdir config
       ```
 
-7. ㅇㅈㅂㅈ
+8. 프로젝트 설정 테스팅
+
+      - 서버 watch 모드로 실행
+
+        ```bash
+        $ npm start
+        ```
+
+      - 소스 변경시 Live Reloading 확인 

@@ -4,7 +4,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
-                {/*<Categorizer />*/}
+                { <h1>Hello World</h1> }
             </div>
         )
     }
