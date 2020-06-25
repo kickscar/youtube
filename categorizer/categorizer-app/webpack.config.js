@@ -2,17 +2,17 @@ const path = require('path');
 
 module.exports = {
     context: path.resolve('.'),
-    entry: path.resolve('.', 'src', 'index.js'),
+    entry: ["@babel/polyfill", path.resolve('.', 'src', 'index.js')],
     output: {
         path: path.resolve('.', 'public'),
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: [".js", ".ts"],
+        extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
     },
     module: {
         rules: [{
-            test: /\.(js|ts)$/,
+            test: /\.(js|jsx|tsx|ts)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         },{

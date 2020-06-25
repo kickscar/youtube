@@ -6,14 +6,14 @@ import Loadable from 'react-loadable';
 import { routes } from './routes';
 
 // setup fake backend
-// import { configureFakeBackend } from './helpers';
-// import { isUserAuthenticated } from './helpers/authUtils';
+import { configureFakeBackend } from './helpers';
+import { isUserAuthenticated } from './helpers/authUtils';
 
 // Themes
 import './assets/scss/DefaultTheme.scss';
 
 
-// Lazy loading and code splitting - 
+// Lazy loading and code splitting -
 // Derieved idea from https://blog.logrocket.com/lazy-loading-components-in-react-16-6-6cea535c0b52
 const loading = () => <div></div>
 
@@ -41,7 +41,7 @@ configureFakeBackend();
 
 /**
  * Exports the component with layout wrapped to it
- * @param {} WrappedComponent 
+ * @param {} WrappedComponent
  */
 const withLayout = (WrappedComponent) => {
   const HOC = class extends Component {
@@ -69,7 +69,6 @@ class App extends Component {
 
   render() {
     return (
-      // rendering the router with layout
       <BrowserRouter>
         <React.Fragment>
           {routes.map((route, index) => {

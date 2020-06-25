@@ -10,17 +10,22 @@
     }
   }], ["@babel/preset-typescript", {
     "compilerOptions": {
-      "target": "ES6",
+      "target": "es6",
       "moduleResolution": "node",
       "allowJs": true,
       "checkJs": true,
       "noEmit": true,
       "strict": true,
       "isolatedModules": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "noImplicitAny": false,
+      "sourceMap": false
     },
     "include": [
       "src"
+    ],
+    "exclude": [
+      "node_modules"
     ]
   }], "@babel/preset-react"],
   "plugins": [

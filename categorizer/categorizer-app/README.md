@@ -19,10 +19,10 @@ $ npm init -y
    $ npm i -D webpack webpack-cli webpack-dev-server
    ```
 
-2. babel 패키지(js, ts 트랜스파일링 presets & plugins) : @babel/core,  @babel/preset-env, @babel/preset-react, @babel/plugin-proposal-class-properties, @babel/plugin-proposal-object-rest-spread, babel-loader
+2. babel 패키지(js, ts 트랜스파일링 presets & plugins) : @babel/core,  @babel/preset-env, @babel/preset-react, @babel/plugin-proposal-class-properties, @babel/plugin-proposal-object-rest-spread, @babel/polyfill, babel-loader
 
    ```bash
-   $ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
+   $ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/polyfill
    ```
 
 3. 스타일시트 babel loader 패키지 : style-loader, css-loader, sass-loader
@@ -80,17 +80,17 @@ const path = require('path');
 
 module.exports = {
     context: path.resolve('.'),
-    entry: path.resolve('.', 'src', 'index.js'),
+    entry: ["@babel/polyfill", path.resolve('.', 'src', 'index.js')],
     output: {
         path: path.resolve('.', 'public'),
         filename: 'bundle.js'
     },
-		resolve: {
-        extensions: [".js", ".ts"],
+    resolve: {
+        extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
     },
     module: {
         rules: [{
-            test: /\.(js|ts)$/,
+            test: /\.(js|jsx|tsx|ts)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         },{
@@ -104,18 +104,18 @@ module.exports = {
                 }
             }]
         },{
-					test: /\.s[ac]ss$/i,
-    			use: [
-			      'style-loader',
-			      'css-loader',
-			      'sass-loader'
-    			]
-  			},{
+            test: /\.s[ac]ss$/i,
+            use: [
+                'style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
+        }, {
             test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
             loader: 'url-loader',
             options: {
                 name: '[hash].[ext]',
-                limit: 50000,
+                limit: 10000,
             },
         }]
     },
