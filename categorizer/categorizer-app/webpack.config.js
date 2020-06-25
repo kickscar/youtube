@@ -7,9 +7,12 @@ module.exports = {
         path: path.resolve('.', 'public'),
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: [".js", ".ts"],
+    },
     module: {
         rules: [{
-            test: /\.js$/,
+            test: /\.(js|ts)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         },{
@@ -22,6 +25,20 @@ module.exports = {
                     modules: true
                 }
             }]
+        },{
+            test: /\.s[ac]ss$/i,
+            use: [
+                'style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
+        }, {
+            test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+            loader: 'url-loader',
+            options: {
+                name: '[hash].[ext]',
+                limit: 10000,
+            },
         }]
     },
     devServer: {

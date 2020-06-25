@@ -13,15 +13,41 @@ $ npm init -y
 ```
 
 #### 2. 패키지 설치(for developement)
-```bash
-$ npm i -D webpack webpack-cli webpack-dev-server @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader sass-loader react react-dom react-addons-update 
-```
+1. 웹팩 패키지 : webpack, webpack-cli, webpack-dev-server
 
-1. 웹팩 패키지 : webpack, webpack-cli
-2. babel 패키지 : @babel/core,  @babel/preset-env, @babel/preset-react, babel-loader
-3. 스타일시트 패키지 : style-loader, css-loader, sass-loader
-4. react 라이브러리 패키지: react, react-dom, react-addons-update
-5. 개발 도구: nodemon,  npm-run-all, webpack-dev-server(반드시 필요하지 않음)
+   ```bash
+   $ npm i -D webpack webpack-cli webpack-dev-server
+   ```
+
+2. babel 패키지(js, ts 트랜스파일링 presets & plugins) : @babel/core,  @babel/preset-env, @babel/preset-react, @babel/plugin-proposal-class-properties, @babel/plugin-proposal-object-rest-spread, babel-loader
+
+   ```bash
+   $ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
+   ```
+
+3. 스타일시트 babel loader 패키지 : style-loader, css-loader, sass-loader
+
+   ```bash
+   $ npm i -D style-loader css-loader sass-loader
+   ```
+
+4. 기타 파일 babel loader 패키지 : file-loader, url-loader
+
+   ```bash
+   $ npm i -D file-loader, url-loader
+   ```
+
+5. react 라이브러리 기본 패키지: react, react-dom, react-addons-update
+
+   ```bash
+   $ npm i -D react react-dom react-addons-update 
+   ```
+
+6. node 개발 도구: nodemon,  npm-run-all
+
+   ```bash
+   $ npm i -D nodemon npm-run-all
+   ```
 
 #### 3. 패키지 설치(for production)
 ```bash
@@ -41,7 +67,10 @@ $ npm i express
       "opera": "69",
       "safari": "13"
     }
-  }], "@babel/preset-react"]
+  }], "@babel/preset-react"],
+  "plugins": [
+        "@babel/plugin-proposal-class-properties"
+	]
 }
 ```
 
@@ -56,9 +85,12 @@ module.exports = {
         path: path.resolve('.', 'public'),
         filename: 'bundle.js'
     },
+		resolve: {
+        extensions: [".js", ".ts"],
+    },
     module: {
         rules: [{
-            test: /\.js$/,
+            test: /\.(js|ts)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         },{
@@ -71,6 +103,20 @@ module.exports = {
                     modules: true
                 }
             }]
+        },{
+					test: /\.s[ac]ss$/i,
+    			use: [
+			      'style-loader',
+			      'css-loader',
+			      'sass-loader'
+    			]
+  			},{
+            test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+            loader: 'url-loader',
+            options: {
+                name: '[hash].[ext]',
+                limit: 50000,
+            },
         }]
     },
     devServer: {
@@ -89,9 +135,8 @@ module.exports = {
 #### 6. package.json scripting
 ```json
 "scripts": {
-  "start": "npm-run-all --parallel build:frontend run:server",
-  "run:server": "nodemon --inspect -e js,mjs,json,htm,html,css --watch public bin/server.js",
-  "build:frontend": "webpack --watch"
+    "start": "webpack-dev-server --progress",
+    "build": "webpack"
 }
 ```
 
@@ -100,7 +145,7 @@ module.exports = {
 $ mkdir src
 $ mkdir public
 $ mkdir bin
-$ mjdir config
+$ mkdir bin/config
 ```
 
 #### 8. 프로젝트 설정 테스팅
