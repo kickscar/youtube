@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from "react";
 import { Container } from 'reactstrap';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 import profilePic from '../assets/images/users/user-1.jpg';
 
@@ -58,6 +58,7 @@ class AuthLayout extends Component {
     }
 
     render() {
+        console.log("!!!!!!!! - ", this.props);
         // get the child view which we would like to render
         const children = this.props.children || null;
         return (
@@ -65,11 +66,10 @@ class AuthLayout extends Component {
                 <div id="wrapper">
                     <Suspense fallback={loading()}>
                         <Topbar rightSidebarToggle={this.toggleRightSidebar} menuToggle={this.toggleMenu} />
-                        <Sidebar isCondensed={this.state.isCondensed} {...this.props} />
+                        <Sidebar isCondensed={this.state.isCondensed} {...this.props} location={{pathname:''}}/>
                     </Suspense>
                     <div className="content-page">
                         <div className="content">
-
                             <Container fluid>
                                 <Suspense fallback={loading()}>
                                     {children}
@@ -77,13 +77,15 @@ class AuthLayout extends Component {
                             </Container>
                         </div>
                     </div>
-
-                    <Footer />
+                    <Suspense fallback={loading()}>
+                        <Footer />
+                    </Suspense>
                 </div>
-
-                <RightSidebar title={"Settings"}>
-                    <RightSidebarContent user={this.props.user} />
-                </RightSidebar>
+                <Suspense fallback={loading()}>
+                    <RightSidebar title={"Settings"}>
+                        <RightSidebarContent user={this.props.user} />
+                    </RightSidebar>
+                </Suspense>
             </div>
         );
     }
@@ -94,4 +96,4 @@ const mapStateToProps = (state) => {
         user: state.Auth.user
     }
 }
-export default connect(mapStateToProps, null)(AuthLayout);
+export default AuthLayout;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap';
 
@@ -194,5 +194,5 @@ class Topbar extends Component {
 }
 
 
-export default connect()(Topbar);
+export default Topbar;
 

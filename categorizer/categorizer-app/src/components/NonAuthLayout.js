@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 
 // code splitting and lazy loading
@@ -11,7 +11,9 @@ import { connect } from 'react-redux';
 const loading = () => <div className="text-center">Loading...</div>
 
 class NonAuthLayout extends Component {
+
     render() {
+        console.log("->>>", this.props.children);
         const children = this.props.children || null;
         return (
             <Suspense fallback={loading()}>

@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
 
 import { routes } from './routes';
@@ -11,6 +11,7 @@ import { isUserAuthenticated } from './helpers/authUtils';
 
 // Themes
 import './assets/scss/DefaultTheme.scss';
+import AuthLayout from "./components/AuthLayout";
 
 // Lazy loading and code splitting -
 // Derieved idea from https://blog.logrocket.com/lazy-loading-components-in-react-16-6-6cea535c0b52
@@ -26,7 +27,7 @@ const NonAuthLayout = Loadable({
   loading
 });
 
-const AuthLayout = Loadable({
+const AuthLayout2 = Loadable({
   loader: () => import('./components/AuthLayout'),
   render(loaded, props) {
     let Component = loaded.default;
@@ -36,7 +37,7 @@ const AuthLayout = Loadable({
 });
 
 // configure fake backend
-configureFakeBackend();
+// configureFakeBackend();
 
 /**
  * Exports the component with layout wrapped to it
@@ -45,28 +46,38 @@ configureFakeBackend();
 const withLayout = (WrappedComponent) => {
   const HOC = class extends Component {
     render() {
+      console.log(this.props);
       return <WrappedComponent {...this.props} />;
     }
   };
 
-  return connect()(HOC);
+  return HOC;
 }
 
+const f = () => {
 
+  const HOC = class extends Component {
+    render() {
+      console.log(this.props);
+      return (<AuthLayout {...this.props}>
+        <route.component {...this.props} />
+      </AuthLayout>);
+    }
+  }
+
+  return HOC;
+}
 
 /**
  * Main app component
  */
+
+
 class App extends Component {
-  /**
- * Returns the layout component based on different properties
- * @param {*} props 
- */
-  getLayout = () => {
-    return isUserAuthenticated() ? AuthLayout : NonAuthLayout;
-  }
+
 
   render() {
+    console.log("!!!!!");
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -77,16 +88,20 @@ class App extends Component {
                 path={route.path}
                 exact={route.exact}
                 roles={route.roles}
-                component={withLayout(props => {
-                  const Layout = this.getLayout();
-                  return (
-                    <Suspense fallback={loading()}>
-                      <Layout {...props}>
-                        <route.component {...props} />
-                      </Layout>
-                    </Suspense>
-                  );
-                })}
+                component={ () => {
+                  return (<AuthLayout {...this.props}>
+                    <route.component {...this.props} />
+                  </AuthLayout>);
+                } }
+                // component={withLayout(props => {
+                //   console.log(props);
+                //   const Layout = AuthLayout;
+                //   return (
+                //       <Layout {...props}>
+                //         <route.component {...props} />
+                //       </Layout>
+                //   );
+                // })}
               />
             );
           })}
@@ -103,4 +118,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+export default App;

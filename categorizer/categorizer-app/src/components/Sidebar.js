@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -183,4 +183,4 @@ class Sidebar extends Component {
     }
 }
 
-export default connect()(Sidebar);
+export default Sidebar;

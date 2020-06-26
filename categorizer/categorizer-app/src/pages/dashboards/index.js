@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 
 import { getLoggedInUser } from '../../helpers/authUtils';
@@ -54,4 +54,4 @@ class DefaultDashboard extends Component {
 }
 
 
-export default connect()(DefaultDashboard);
+export default DefaultDashboard;

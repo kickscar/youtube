@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -80,4 +80,4 @@ class RightSideBar extends Component {
     }
 }
 
-export default connect()(RightSideBar);
+export default RightSideBar;
