@@ -11,13 +11,15 @@ const isUserAuthenticated = () => {
     }
     const decoded = jwtDecode(user.token);
     const currentTime = Date.now() / 1000;
-    if (decoded.exp < currentTime) {
-        console.warn('access token expired');
-        return false;
-    }
-    else {
-        return true;
-    }
+
+    return true;
+    // if (decoded.exp < currentTime) {
+    //     console.warn('access token expired');
+    //     return false;
+    // }
+    // else {
+    //     return true;
+    // }
 }
 
 /**
