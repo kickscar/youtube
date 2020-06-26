@@ -1,4 +1,0 @@
-# Module excludes paths & files
-venv/
-**/__pycache__
-
