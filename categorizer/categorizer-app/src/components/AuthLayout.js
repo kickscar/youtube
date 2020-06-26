@@ -2,10 +2,10 @@ import React, { Component, Suspense } from "react";
 import { Container } from 'reactstrap';
 //import { connect } from 'react-redux';
 
+// temporary
 import profilePic from '../assets/images/users/user-1.jpg';
 
-// code splitting and lazy loading
-// https://blog.logrocket.com/lazy-loading-components-in-react-16-6-6cea535c0b52
+// Code Splitting
 const Topbar = React.lazy(() => import("./Topbar"));
 const Sidebar = React.lazy(() => import("./Sidebar"));
 const RightSidebar = React.lazy(() => import("./RightSidebar"));
@@ -25,8 +25,7 @@ const RightSidebarContent = (props) => {
     </div>
 }
 
-class AuthLayout extends Component {
-
+export default class AuthLayout extends Component {
     constructor(props) {
         super(props);
 
@@ -42,24 +41,16 @@ class AuthLayout extends Component {
         this.props.history.push("/login");
     }
 
-    /**
-     * toggle Menu
-     */
     toggleMenu = (e) => {
         e.preventDefault();
         this.setState({ isCondensed: !this.state.isCondensed });
     }
 
-    /**
-     * Toggle right side bar
-     */
     toggleRightSidebar = () => {
         document.body.classList.toggle("right-bar-enabled");
     }
 
     render() {
-        console.log("!!!!!!!! - ", this.props);
-        // get the child view which we would like to render
         const children = this.props.children || null;
         return (
             <div className="app">
@@ -96,4 +87,3 @@ const mapStateToProps = (state) => {
         user: state.Auth.user
     }
 }
-export default AuthLayout;
