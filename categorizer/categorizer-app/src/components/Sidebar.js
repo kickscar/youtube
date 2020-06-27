@@ -7,65 +7,54 @@ import MetisMenu from 'metismenujs/dist/metismenujs';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
-
 const SideNavContent = () => {
     return <React.Fragment>
-        <div className="left-side-menu">
-
-            <div className="slimsScrollDiv">
-                <div id="sidebar-menu">
-
-                    <ul className="metismenu" id="side-menu">
-
-                        <li className="menu-title">Navigation</li>
-
+        <div id="sidebar-menu">
+            <ul className="metismenu" id="side-menu">
+                <li className="menu-title">Navigation</li>
+                <li>
+                    <Link to="/" className="waves-effect has-dropdown" aria-expanded="true">
+                        <i className="fe-airplay"></i>
+                        <span className="badge badge-success badge-pill float-right">2</span>
+                        <span> Dashboards </span>
+                    </Link>
+                    <ul className="nav-second-level" aria-expanded="false">
                         <li>
-                            <Link to="/" className="waves-effect has-dropdown" aria-expanded="true">
-                                <i className="fe-airplay"></i>
-                                <span className="badge badge-success badge-pill float-right">2</span>
-                                <span> Dashboards </span>
-                            </Link>
-                            <ul className="nav-second-level" aria-expanded="false">
-                                <li>
-                                    <Link to="/dashboard" className="side-nav-link-ref">Dashboard 1</Link>
-                                </li>
-                                <li>
-                                    <Link to="/dashboard2" className="side-nav-link-ref">Dashboard 2</Link>
-                                </li>
-                            </ul>
+                            <Link to="/dashboard" className="side-nav-link-ref">Dashboard 1</Link>
                         </li>
-
                         <li>
-                            <Link to="/" className="waves-effect has-dropdown" aria-expanded="false">
-                                <i className="fe-folder-plus"></i>
-                                <span> Multi Level </span>
+                            <Link to="/dashboard2" className="side-nav-link-ref">Dashboard 2</Link>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <Link to="/" className="waves-effect has-dropdown" aria-expanded="false">
+                        <i className="fe-folder-plus"></i>
+                        <span> Multi Level </span>
+                        <span className="menu-arrow"></span>
+                    </Link>
+                    <ul className="nav-second-level nav" aria-expanded="false">
+                        <li>
+                            <Link to="/" className="side-nav-link-ref">Level 1.1</Link>
+                        </li>
+                        <li>
+                            <Link to="/" className="has-dropdown">Level 1.2
                                 <span className="menu-arrow"></span>
                             </Link>
-
-                            <ul className="nav-second-level nav" aria-expanded="false">
+                            <ul className="nav-third-level nav" aria-expanded="false">
                                 <li>
-                                    <Link to="/" className="side-nav-link-ref">Level 1.1</Link>
+                                    <Link to="/" className="side-nav-link-ref">Level 2.1</Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="has-dropdown">Level 1.2
-                                        <span className="menu-arrow"></span>
-                                    </Link>
-                                    <ul className="nav-third-level nav" aria-expanded="false">
-                                        <li>
-                                            <Link to="/" className="side-nav-link-ref">Level 2.1</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/" className="side-nav-link-ref">Level 2.2</Link>
-                                        </li>
-                                    </ul>
+                                    <Link to="/" className="side-nav-link-ref">Level 2.2</Link>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                </div>
-                <div className="clearfix"></div>
-            </div>
+                </li>
+            </ul>
         </div>
+        <div className="clearfix"></div>
     </React.Fragment>
 }
 
@@ -77,24 +66,14 @@ export default class Sidebar extends Component {
         this.initMenu = this.initMenu.bind(this);
     }
 
-    /**
-     * Bind event
-     */
     componentWillMount = () => {
         document.addEventListener('mousedown', this.handleOtherClick, false);
     }
 
-
-    /**
-     *
-     */
     componentDidMount = () => {
         this.initMenu();
     }
 
-    /**
-     * Component did update
-     */
     componentDidUpdate = (prevProps) => {
         if (this.props.isCondensed !== prevProps.isCondensed) {
             if (prevProps.isCondensed) {
@@ -112,16 +91,10 @@ export default class Sidebar extends Component {
         }
     }
 
-    /**
-     * Bind event
-     */
     componentWillUnmount = () => {
         document.removeEventListener('mousedown', this.handleOtherClick, false);
     }
 
-    /**
-     * Handle the click anywhere in doc
-     */
     handleOtherClick = (e) => {
         if (this.menuNodeRef.contains(e.target))
             return;
@@ -129,9 +102,6 @@ export default class Sidebar extends Component {
         document.body.classList.remove('sidebar-enable');
     }
 
-    /**
-     * Init the menu
-     */
     initMenu = () => {
         // render menu
         new MetisMenu("#side-menu");
@@ -148,10 +118,7 @@ export default class Sidebar extends Component {
             matchingMenuItem.classList.add('active');
             var parent = matchingMenuItem.parentElement;
 
-            /**
-             * TODO: This is hard coded way of expading/activating parent menu dropdown and working till level 3.
-             * We should come up with non hard coded approach
-             */
+            // not implemented yet!
             if (parent) {
                 parent.classList.add('active');
                 const parent2 = parent.parentElement;
@@ -176,15 +143,12 @@ export default class Sidebar extends Component {
     }
 
     render() {
-        const isCondensed = this.props.isCondensed || false;
         return (
             <React.Fragment>
                 <div className='left-side-menu' ref={node => this.menuNodeRef = node}>
-                    {!isCondensed && <PerfectScrollbar><SideNavContent/></PerfectScrollbar>}
-                    {isCondensed && <SideNavContent/>}
+                    { this.props.isCondensed ? <SideNavContent/> : <PerfectScrollbar><SideNavContent /></PerfectScrollbar> }
                 </div>
             </React.Fragment>
         );
     }
 }
-
