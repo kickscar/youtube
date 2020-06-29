@@ -10,7 +10,7 @@ import React, { Component, Suspense } from "react";
 // loading
 const loading = () => <div className="text-center">Loading...</div>
 
-class NonAuthLayout extends Component {
+export default class LayoutUnauthozied extends Component {
 
     render() {
         console.log("->>>", this.props.children);
@@ -22,5 +22,3 @@ class NonAuthLayout extends Component {
         );
     }
 }
-
-export default connect()(NonAuthLayout);

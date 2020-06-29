@@ -2,12 +2,12 @@ import React, { Component, Suspense } from "react";
 import { Container } from 'reactstrap';
 
 // temporary
-import profilePic from '../assets/images/users/user-1.jpg';
+import profilePic from '../../../assets/images/users/user-1.jpg';
 
 // Code Splitting
-const Topbar = React.lazy(() => import("./Topbar"));
-const Sidebar = React.lazy(() => import("./Sidebar"));
-const RightSidebar = React.lazy(() => import("./RightSidebar"));
+const Topbar = React.lazy(() => import("./Header"));
+const Sidebar = React.lazy(() => import("./BarLeftSide"));
+const RightSidebar = React.lazy(() => import("./BarRightSide"));
 const Footer = React.lazy(() => import("./Footer"));
 const loading = () => <div className="text-center">loading...</div>;
 
@@ -22,7 +22,7 @@ const RightSidebarContent = (props) => {
     </div>
 }
 
-export default class AuthLayout extends Component {
+export default class LayoutAuthozied extends Component {
     constructor(props) {
         super(props);
 
@@ -48,30 +48,29 @@ export default class AuthLayout extends Component {
     }
 
     render() {
-        const children = this.props.children || null;
         return (
             <div className="app">
                 <div id="wrapper">
-                    <Suspense fallback={loading()}>
-                        <Topbar rightSidebarToggle={this.toggleRightSidebar} menuToggle={this.toggleMenu} />
-                        <Sidebar isCondensed={this.state.isCondensed} {...this.props} location={{pathname:''}}/>
+                    <Suspense fallback={ loading() }>
+                        <Topbar rightSidebarToggle={ this.toggleRightSidebar } menuToggle={ this.toggleMenu } />
+                        <Sidebar isCondensed={ this.state.isCondensed } { ...this.props } location={ { pathname: '' } }/>
                     </Suspense>
                     <div className="content-page">
                         <div className="content">
                             <Container fluid>
-                                <Suspense fallback={loading()}>
-                                    {children}
+                                <Suspense fallback={ loading() }>
+                                    { this.props.children ? this.props.children : null }
                                 </Suspense>
                             </Container>
                         </div>
                     </div>
-                    <Suspense fallback={loading()}>
+                    <Suspense fallback={ loading() }>
                         <Footer />
                     </Suspense>
                 </div>
-                <Suspense fallback={loading()}>
-                    <RightSidebar title={"Settings"}>
-                        <RightSidebarContent user={this.props.user} />
+                <Suspense fallback={ loading() }>
+                    <RightSidebar title={ "Settings" }>
+                        <RightSidebarContent user={ this.props.user } />
                     </RightSidebar>
                 </Suspense>
             </div>

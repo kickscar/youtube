@@ -4,8 +4,8 @@ import { Redirect, Link } from 'react-router-dom'
 
 import { Container, Row, Col, Card, CardBody, } from 'reactstrap';
 
-import { isUserAuthenticated } from '../../helpers/authUtils';
-import logo from '../../assets/images/logo-dark.png';
+import { isUserAuthenticated } from '../../../util/authUtils';
+import logo from '../../../assets/images/logo-dark.png';
 
 class Confirm extends Component {
     _isMounted = false;

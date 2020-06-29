@@ -10,9 +10,9 @@ import {
     FORGET_PASSWORD,
     FORGET_PASSWORD_SUCCESS,
     FORGET_PASSWORD_FAILED
-} from '../../constants/actionTypes';
+} from '../../type/action';
 
-import { getLoggedInUser } from '../../helpers/authUtils';
+import { getLoggedInUser } from '../../util/authUtils';
 
 const INIT_STATE = {
     user: getLoggedInUser(),

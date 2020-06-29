@@ -73,7 +73,7 @@
     box-shadow: $shadow;
 }
 
-// Sidebar
+// BarLeftSide
 #sidebar-menu {
     >ul {
         >li {
@@ -193,7 +193,7 @@
             visibility: hidden;
         }
 
-        // Sidebar Menu
+        // BarLeftSide Menu
         #sidebar-menu {
             .menu-title,
             .menu-arrow,

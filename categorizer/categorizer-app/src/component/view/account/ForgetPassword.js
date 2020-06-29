@@ -5,9 +5,9 @@ import { Redirect, Link } from 'react-router-dom'
 import { Container, Row, Col, Card, CardBody, FormGroup, Button, Alert } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
-import { isUserAuthenticated } from '../../helpers/authUtils';
-import Loader from '../../components/Loader';
-import logo from '../../assets/images/logo-dark.png';
+import { isUserAuthenticated } from '../../../util/authUtils';
+import Loader from '../common/Loader';
+import logo from '../../../assets/images/logo-dark.png';
 
 class ForgetPassword extends Component {
     _isMounted = false;

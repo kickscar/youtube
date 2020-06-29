@@ -10,7 +10,7 @@ import {
     FORGET_PASSWORD,
     FORGET_PASSWORD_SUCCESS,
     FORGET_PASSWORD_FAILED
-} from '../../constants/actionTypes';
+} from '../../type/action';
 
 type AuthAction = { type: string, payload: {} | string };
 

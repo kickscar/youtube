@@ -1,6 +1,6 @@
 import { expectSaga } from 'redux-saga-test-plan';
 
-import { fetchJSON } from '../../helpers/api';
+import { fetchJSON } from '../../util/api';
 import * as actions from './actions';
 import authReducer from './reducers';
 import { watchLoginUser, watchRegisterUser, watchForgetPassword } from './saga';

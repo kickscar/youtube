@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-//import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
-class RightSideBar extends Component {
+export default class BarRightSide extends Component {
     rightBarNodeRef;
 
     static defaultProps = {
-        title: 'Right Sidebar'
+        title: 'Right BarLeftSide'
     }
 
     constructor(props) {
@@ -79,5 +78,3 @@ class RightSideBar extends Component {
         )
     }
 }
-
-export default RightSideBar;

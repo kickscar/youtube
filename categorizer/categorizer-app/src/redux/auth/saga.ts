@@ -7,7 +7,7 @@ import {
     LOGOUT_USER,
     REGISTER_USER,
     FORGET_PASSWORD
-} from '../../constants/actionTypes';
+} from '../../type/action';
 
 
 import {

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-//import { connect } from 'react-redux';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 
-import { getLoggedInUser } from '../../helpers/authUtils';
-import Loader from '../../components/Loader';
+import { getLoggedInUser } from '../../../util/authUtils';
+import Loader from '../common/Loader';
 
 
-class DefaultDashboard extends Component {
+export default class Index extends Component {
 
     constructor(props) {
         super(props);
@@ -52,6 +51,3 @@ class DefaultDashboard extends Component {
         )
     }
 }
-
-
-export default DefaultDashboard;

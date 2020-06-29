@@ -57,7 +57,7 @@ const SideNavContent = () => {
 }
 
 
-export default class Sidebar extends Component {
+export default class BarLeftSide extends Component {
     constructor(props) {
         super(props);
         this.handleOtherClick = this.handleOtherClick.bind(this);
