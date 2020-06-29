@@ -7,7 +7,6 @@ Contact: support@coderthemes.com
 File: Main Css File
 */
 
-
 //Fonts
 @import "custom/fonts/fonts";
 
@@ -16,7 +15,6 @@ File: Main Css File
 @import "./node_modules/bootstrap/scss/variables";
 @import "variables";
 @import "./node_modules/bootstrap/scss/mixins";
-
 
 
 // Structure
@@ -57,7 +55,7 @@ File: Main Css File
 @import "custom/pages/ecommerce";
 
 // Vendors
-@import "vendor/metisMenu";
+@import "3rd/metisMenu";
 
 
 // Plugins

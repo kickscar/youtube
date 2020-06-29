@@ -1,16 +1,10 @@
 import React, { Component, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-//import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
-
 import { routes } from './routes';
 
-// setup fake backend
-import { configureFakeBackend } from './helpers';
-import { isUserAuthenticated } from './helpers/authUtils';
-
 // Themes
-import './assets/scss/DefaultTheme.scss';
+import './assets/scss/App.scss';
 import AuthLayout from "./components/AuthLayout";
 
 // Lazy loading and code splitting -
@@ -79,34 +73,34 @@ class App extends Component {
   render() {
     console.log("!!!!!");
     return (
-      <BrowserRouter>
-        <React.Fragment>
-          {routes.map((route, index) => {
-            return (
-              <route.route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                roles={route.roles}
-                component={ () => {
-                  return (<AuthLayout {...this.props}>
-                    <route.component {...this.props} />
-                  </AuthLayout>);
-                } }
-                // component={withLayout(props => {
-                //   console.log(props);
-                //   const Layout = AuthLayout;
-                //   return (
-                //       <Layout {...props}>
-                //         <route.component {...props} />
-                //       </Layout>
-                //   );
-                // })}
-              />
-            );
-          })}
-        </React.Fragment>
-      </BrowserRouter>
+        <BrowserRouter>
+          <React.Fragment>
+            {routes.map((route, index) => {
+              return (
+                  <route.route
+                      key={index}
+                      path={route.path}
+                      exact={route.exact}
+                      roles={route.roles}
+                      component={ () => {
+                        return (<AuthLayout {...this.props}>
+                          <route.component {...this.props} />
+                        </AuthLayout>);
+                      } }
+                      // component={withLayout(props => {
+                      //   console.log(props);
+                      //   const Layout = AuthLayout;
+                      //   return (
+                      //       <Layout {...props}>
+                      //         <route.component {...props} />
+                      //       </Layout>
+                      //   );
+                      // })}
+                  />
+              );
+            })}
+          </React.Fragment>
+        </BrowserRouter>
     );
   }
 }

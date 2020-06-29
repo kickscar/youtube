@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-//import { connect } from 'react-redux';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import MetisMenu from 'metismenujs/dist/metismenujs';
@@ -11,12 +10,11 @@ const SideNavContent = () => {
     return <React.Fragment>
         <div id="sidebar-menu">
             <ul className="metismenu" id="side-menu">
-                <li className="menu-title">Navigation</li>
                 <li>
                     <Link to="/" className="waves-effect has-dropdown" aria-expanded="true">
                         <i className="fe-airplay"></i>
                         <span className="badge badge-success badge-pill float-right">2</span>
-                        <span> Dashboards </span>
+                        <span>카테고리</span>
                     </Link>
                     <ul className="nav-second-level" aria-expanded="false">
                         <li>

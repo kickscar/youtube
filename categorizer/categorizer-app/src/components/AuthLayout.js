@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from "react";
 import { Container } from 'reactstrap';
-//import { connect } from 'react-redux';
 
 // temporary
 import profilePic from '../assets/images/users/user-1.jpg';
@@ -10,16 +9,14 @@ const Topbar = React.lazy(() => import("./Topbar"));
 const Sidebar = React.lazy(() => import("./Sidebar"));
 const RightSidebar = React.lazy(() => import("./RightSidebar"));
 const Footer = React.lazy(() => import("./Footer"));
-const loading = () => <div className="text-center"></div>;
+const loading = () => <div className="text-center">loading...</div>;
 
 const RightSidebarContent = (props) => {
     return <div className="user-box">
         <div className="user-img">
-            <img src={profilePic} alt="user-img" title="Nik Patel"
-                className="rounded-circle img-fluid" />
+            <img src={profilePic} alt="user-img" title="관리자" className="rounded-circle img-fluid" />
             <a href="/" className="user-edit"><i className="mdi mdi-pencil"></i></a>
         </div>
-
         <h5>{props.user && <a href="/">{props.user.username}</a> }</h5>
         <p className="text-muted mb-0"><small>Founder</small></p>
     </div>
