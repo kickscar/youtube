@@ -1,31 +1,47 @@
 ## Categorizer: categorizer-app(frontend)
 
-### 1 구성
+### 1. 구성
 
 1. React 기반 SPA
 2. Application Bundle Landing을 위한 Web Server(Node)
 
-### 2 Project Configuration
+### 2. Project Configuration(start from git source)
+
+```bash
+npm install
+```
+
+### 3. Project Configuration(start from scratch)
 
 #### 1. 메니페스트 생성
 ```bash
 $ npm init -y
 ```
 
-#### 2. 패키지 설치(for developement)
+#### 2. 패키지 설치(for development)
 1. 웹팩 패키지 : webpack, webpack-cli, webpack-dev-server
 
    ```bash
    $ npm i -D webpack webpack-cli webpack-dev-server
    ```
 
-2. babel 패키지(js, ts 트랜스파일링 presets & plugins) : @babel/core,  @babel/preset-env, @babel/preset-react, @babel/plugin-proposal-class-properties, @babel/plugin-proposal-object-rest-spread, @babel/polyfill, babel-loader
+2. babel 패키지(core, loader, presets & plugins for transfiling) : 
+
+   @babel/core
+
+   @babel/preset-env, @babel/preset-react, @babel/preset-typescript
+
+   @babel/plugin-proposal-class-properties, @babel/plugin-proposal-object-rest-spread
+
+   @babel/polyfill
+
+   babel-loader
 
    ```bash
-   $ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/polyfill
+   $ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/polyfill
    ```
 
-3. 스타일시트 babel loader 패키지 : style-loader, css-loader, sass-loader
+3. css babel loader 패키지 : style-loader, css-loader, sass-loader
 
    ```bash
    $ npm i -D style-loader css-loader sass-loader
@@ -45,6 +61,18 @@ $ npm init -y
 
 6. node 개발 도구: nodemon,  npm-run-all
 
+7. 기타 application dependency
+
+   jwt-decode, react-cookie 
+
+   react-router-auth, react-router-dom
+
+   redux, react-redux, redux-saga
+
+   react-loadable, reactstrap, availity-reactstrap-validation
+
+   bootstrap, node-sass, react-perfect-scrollbar, metismenujs, 
+
    ```bash
    $ npm i -D nodemon npm-run-all
    ```
@@ -58,19 +86,49 @@ $ npm i express
 #### 4. babel 설정(babel.config.json)
 ```json
 {
-  "presets": [["@babel/env",{
-    "targets": {
-      "ie": "11",
-      "edge": "80",
-      "firefox": "73",
-      "chrome": "82",
-      "opera": "69",
-      "safari": "13"
-    }
-  }], "@babel/preset-react"],
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "ie": "11",
+          "edge": "80",
+          "firefox": "73",
+          "chrome": "82",
+          "opera": "69",
+          "safari": "13"
+        }
+      }
+    ],
+    [
+      "@babel/preset-typescript",
+      {
+        "compilerOptions": {
+          "target": "es6",
+          "moduleResolution": "node",
+          "allowJs": true,
+          "checkJs": true,
+          "noEmit": true,
+          "strict": true,
+          "isolatedModules": true,
+          "esModuleInterop": true,
+          "noImplicitAny": false,
+          "sourceMap": false
+        },
+        "include": [
+          "src"
+        ],
+        "exclude": [
+          "node_modules"
+        ]
+      }
+    ],
+    "@babel/preset-react"
+  ],
   "plugins": [
-        "@babel/plugin-proposal-class-properties"
-	]
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread"
+  ]
 }
 ```
 
@@ -93,7 +151,7 @@ module.exports = {
             test: /\.(js|jsx|tsx|ts)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
-        },{
+        }, {
             test: /\.css$/i,
             loader: [{
                 loader: 'style-loader'
@@ -103,7 +161,7 @@ module.exports = {
                     modules: true
                 }
             }]
-        },{
+        }, {
             test: /\.s[ac]ss$/i,
             use: [
                 'style-loader',
@@ -132,7 +190,7 @@ module.exports = {
 }
 ```
 
-#### 6. package.json scripting
+#### 6. Scripting in package.json 
 ```json
 "scripts": {
     "start": "webpack-dev-server --progress",
@@ -140,7 +198,7 @@ module.exports = {
 }
 ```
 
-#### 7. 디렉토리 생성및 기본 소스 추가
+#### 7. 프로젝트 디렉토리 생성
 ```bash
 $ mkdir src
 $ mkdir public
@@ -148,10 +206,23 @@ $ mkdir bin
 $ mkdir bin/config
 ```
 
-#### 8. 프로젝트 설정 테스팅
-1. 서버 watch 모드로 실행
-```bash
-$ npm start
-```
+- src : frontend react app source
+- public : frontend app budle, landing html
+- bin : web server(node)
+- bin/donfig : web server configuration 
 
-2. 소스 변경시 Live Reloading 확인 
+#### 8. 프로젝트 설정 테스팅
+
+1. 개발 서버 실행
+
+   ```bash
+   $ npm start
+   ```
+
+2. 번들링(빌드)
+
+   ```bash
+   $ npm run build
+   ```
+
+   
