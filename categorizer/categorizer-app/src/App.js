@@ -3,14 +3,14 @@ import {BrowserRouter} from 'react-router-dom';
 import Loadable from 'react-loadable';
 import {routes} from './routes';
 
-import LayoutAuthozied from "./component/view/common/LayoutAuthozied";
+import LayoutAuthozied from "./page/common/LayoutAuthozied";
 import './assets/scss/App.scss';
 
 // Lazy loading and code splitting
 const loading = () => <div></div>
 
 const NonAuthLayout = Loadable({
-    loader: () => import('./component/view/common/LayoutUnauthozied'),
+    loader: () => import('./page/common/LayoutUnauthozied'),
     render(loaded, props) {
         let Component = loaded.default;
         return <Component {...props} />;
@@ -19,7 +19,7 @@ const NonAuthLayout = Loadable({
 });
 
 const AuthLayout = Loadable({
-    loader: () => import('./component/view/common/LayoutAuthozied'),
+    loader: () => import('./page/common/LayoutAuthozied'),
     render(loaded, props) {
         let Component = loaded.default;
         return <Component {...props} />;

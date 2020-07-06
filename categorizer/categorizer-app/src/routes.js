@@ -1,18 +1,18 @@
 import React from 'react';
-import {Redirect, Route} from "react-router-dom";
-import {isUserAuthenticated, getLoggedInUser} from './util/authUtils';
+import { Redirect, Route } from "react-router-dom";
+import { isUserAuthenticated, getLoggedInUser } from './util/authUtils';
 
-const Login = React.lazy(() => import('./component/view/auth/Login'));
-const Logout = React.lazy(() => import('./component/view/auth/Logout'));
+const Login = React.lazy(() => import('./page/user/Login'));
+const Logout = React.lazy(() => import('./page/user/Logout'));
 // const ForgetPassword = React.lazy(() => import('./pages/account/ForgetPassword'));
 // const Register = React.lazy(() => import('./pages/account/Register'));
 // const ConfirmAccount = React.lazy(() => import('./pages/account/Confirm'));
 
-const Dashboard = React.lazy(() => import('./component/view/dashboard/'));
-const Category = React.lazy(() => import('./component/view/category/'));
+const Dashboard = React.lazy(() => import('./page/dashboard/'));
+const Category = React.lazy(() => import('./page/category/'));
 
 const AuthorizedRoute = ({component: Component, roles, ...rest}) => (
-    <Route {...rest} render={props => {
+    <Route {...rest} render={ props => {
         const isAuthTokenValid = isUserAuthenticated();
         if (!isAuthTokenValid) {
             return <Redirect to={{pathname: '/login', state: {from: props.location}}}/>
@@ -37,11 +37,6 @@ const routes = [
 
     { path: '/dashboard', name: 'Dashboard', component: Dashboard, route: AuthorizedRoute, roles: ['Admin'] },
     { path: '/category', name: 'Dashboard', component: Category, route: AuthorizedRoute, roles: ['Admin'] },
-    {
-        path: "/",
-        exact: true,
-        component: () => <Redirect to="/dashboard"/>,
-        route: AuthorizedRoute
-    }];
+    { path: "/", exact: true, component: () => <Redirect to="/dashboard"/>, route: AuthorizedRoute } ];
 
-export {routes, AuthorizedRoute};
+export { routes, AuthorizedRoute };

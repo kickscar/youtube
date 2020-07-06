@@ -1,10 +1,22 @@
+# for mac
+.DS_Store
+**/.DS_Store
+
 # Project exclude paths
 .idea/
 **/*.iml
+**/target
 
+# eclipse
 **/.project
 **/.settings
 **/.classpath
+**/bin
 
-**/target
-**/.DS_Store
+# Other IDE
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardBody } from 'reactstrap';
-import { getLoggedInUser } from '../../../util/authUtils';
+import { getLoggedInUser } from '../../util/authUtils';
 import Loader from '../common/Loader';
 
 

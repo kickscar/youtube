@@ -5,10 +5,10 @@ import { Redirect, Link } from 'react-router-dom'
 import { Container, Row, Col, Card, CardBody, Label, FormGroup, Button, Alert } from 'reactstrap';
 import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 
-import { registerUser } from '../../../redux/actions';
-import { isUserAuthenticated } from '../../../util/authUtils';
+import { registerUser } from '../../redux/actions';
+import { isUserAuthenticated } from '../../util/authUtils';
 import Loader from '../common/Loader';
-import logo from '../../../assets/images/logo-dark.png';
+import logo from '../../assets/images/logo-dark.png';
 
 class Register extends Component {
     _isMounted = false;

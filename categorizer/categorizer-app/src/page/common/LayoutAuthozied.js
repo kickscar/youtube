@@ -2,7 +2,7 @@ import React, { Component, Suspense } from "react";
 import { Container } from 'reactstrap';
 
 // temporary
-import profilePic from '../../../assets/images/users/user-1.jpg';
+import profilePic from '../../assets/images/users/user-1.jpg';
 
 // Code Splitting
 const Topbar = React.lazy(() => import("./Header"));

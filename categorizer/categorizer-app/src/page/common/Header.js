@@ -4,9 +4,9 @@ import {UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem} from '
 
 import NotificationDropdown from './NotificationDropdown';
 import ProfileDropdown from './ProfileDropdown';
-import logoSm from '../../../assets/images/logo-sm.png';
-import logo from '../../../assets/images/logo-light.png';
-import profilePic from '../../../assets/images/users/user-1.jpg';
+import logoSm from '../../assets/images/logo-sm.png';
+import logo from '../../assets/images/logo-light.png';
+import profilePic from '../../assets/images/users/user-1.jpg';
 
 const Notifications = [{
     id: 1,
