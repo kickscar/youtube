@@ -10,7 +10,7 @@ const list = (req, resp, next) => {
         .json({
             result: 'success',
             message: null,
-            data: Date.now()
+            data: null
         });
 
 }

@@ -1,8 +1,6 @@
 import app from './config/app.js';
 import mongo from './config/mongo.js';
 
-console.log(mongo.config);
-
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
 if (typeof module === 'undefined' || !module.parent) {
