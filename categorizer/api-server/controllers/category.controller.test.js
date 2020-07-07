@@ -1,7 +1,7 @@
 import request from 'supertest';
 import assert from 'assert';
 import httpStatus from 'http-status';
-import app from '../config/app.js';
+import app from '../index.js';
 
 const assertStrict = assert.strict;
 
