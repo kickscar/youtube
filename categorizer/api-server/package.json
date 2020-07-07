@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx mocha --timeout 3000 -u bdd **/*test*.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "http-status": "^1.4.2",
     "mocha": "^8.0.1",
+    "mongoose": "^5.9.22",
     "supertest": "^4.0.2"
   }
 }

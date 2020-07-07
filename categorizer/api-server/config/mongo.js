@@ -12,13 +12,18 @@ const {error, value} = Joi.object({
         otherwise: Joi.boolean().default(false)
     }),
     MONGO_HOST: Joi.string().required().description('Mongo DB host url'),
-    MONGO_PORT: Joi.number().default(27017)
+    MONGO_PORT: Joi.number().default(27017),
+    MONGO_CONNECTIONTIMEOUT: Joi.number().default(5000)
 }).unknown().required().validate(process.env);
 
 const config = {
     mongooseDebug: value.MONGOOSE_DEBUG,
     host: value.MONGO_HOST,
-    port: value.MONGO_PORT
+    port: value.MONGO_PORT,
+    options: {
+        useNewUrlParser: true,
+        connectTimeoutMS: value.MONGO_CONNECTIONTIMEOUT
+    }
 };
 
 export default { config }

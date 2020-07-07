@@ -13,8 +13,7 @@ describe('test: category.controller', () => {
             .expect('Content-Type', /json/)
             .expect(httpStatus.OK)
             .then(response => {
-                assertStrict.deepEqual(response.body, { result: 'success', message: null, data: null})
+                assertStrict.deepEqual(response.body, { result: 'success', message: null, data: null});
             })
-
     });
 });
