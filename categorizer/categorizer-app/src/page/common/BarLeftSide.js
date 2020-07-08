@@ -2,53 +2,69 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import MetisMenu from 'metismenujs/dist/metismenujs';
-
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const SideNavContent = () => {
     return <React.Fragment>
         <div id="sidebar-menu">
-            <ul className="metismenu" id="side-menu">
+            <ul>
                 <li>
-                    <Link to="/" className="waves-effect has-dropdown" aria-expanded="true">
-                        <i className="fe-airplay"></i>
-                        <span className="badge badge-success badge-pill float-right">2</span>
-                        <span>카테고리</span>
+                    <Link to="/" className="">
+                        <i className="fe-folder-plus"></i>
+                        <span>전체동영상</span>
+                        <span className="badge-kickscar-r">2,3451</span>
                     </Link>
-                    <ul className="nav-second-level" aria-expanded="false">
+                </li>
+                <li>
+                    <Link to="/" className="">
+                        <i className="fe-folder-plus"></i>
+                        <span>미분류동영상</span>
+                        <span className="badge-kickscar-r">145</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/" className="">
+                        <i className="fe-folder-plus"></i>
+                        <span>삭제함</span>
+                        <span className="badge-kickscar-r">53</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/category" className="has-dropdown">
+                        <span className="menu-arrow"></span>
+                        <i className="fe-folder"></i>
+                        <span>카테고리</span>
+                        <span className="badge-dropdown"></span>
+                    </Link>
+                    <ul className="nav-second-level">
                         <li>
-                            <Link to="/dashboard" className="side-nav-link-ref">Dashboard 1</Link>
+                            <Link to="/category" className="has-dropdown">
+                                <span className="menu-arrow"></span>
+                                <i className="fe-folder"></i>
+                                <span>여행</span>
+                                <span className="badge-kickscar-r">345</span>
+                                <span className="badge-dropdown"></span>
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/dashboard2" className="side-nav-link-ref">Dashboard 2</Link>
+                            <Link to="/category" className="has-dropdown">
+                                <span className="menu-arrow"></span>
+                                <i className="fe-folder"></i>
+                                <span>코딩</span>
+                                <span className="badge-kickscar-r">3,2000</span>
+                                <span className="badge-dropdown"></span>
+                            </Link>
                         </li>
                     </ul>
                 </li>
+                <li className='menu-title'>
+                    <span>크롤링</span>
+                </li>
                 <li>
-                    <Link to="/" className="waves-effect has-dropdown" aria-expanded="false">
+                    <Link to="/" className="has-dropdown">
                         <i className="fe-folder-plus"></i>
-                        <span> Multi Level </span>
-                        <span className="menu-arrow"></span>
+                        <span>크롤링</span>
                     </Link>
-                    <ul className="nav-second-level nav" aria-expanded="false">
-                        <li>
-                            <Link to="/" className="side-nav-link-ref">Level 1.1</Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="has-dropdown">Level 1.2
-                                <span className="menu-arrow"></span>
-                            </Link>
-                            <ul className="nav-third-level nav" aria-expanded="false">
-                                <li>
-                                    <Link to="/" className="side-nav-link-ref">Level 2.1</Link>
-                                </li>
-                                <li>
-                                    <Link to="/" className="side-nav-link-ref">Level 2.2</Link>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </div>
@@ -102,49 +118,50 @@ export default class BarLeftSide extends Component {
 
     initMenu = () => {
         // render menu
-        new MetisMenu("#side-menu");
-        var links = document.getElementsByClassName('side-nav-link-ref');
-        var matchingMenuItem = null;
-        for (var i = 0; i < links.length; i++) {
-            if (this.props.location.pathname === links[i].pathname) {
-                matchingMenuItem = links[i];
-                break;
-            }
-        }
-
-        if (matchingMenuItem) {
-            matchingMenuItem.classList.add('active');
-            var parent = matchingMenuItem.parentElement;
-
-            // not implemented yet!
-            if (parent) {
-                parent.classList.add('active');
-                const parent2 = parent.parentElement;
-                if (parent2) {
-                    parent2.classList.add('in');
-                }
-                const parent3 = parent2.parentElement;
-                if (parent3) {
-                    parent3.classList.add('active');
-                    var childAnchor = parent3.querySelector('.has-dropdown');
-                    if (childAnchor) childAnchor.classList.add('active');
-                }
-
-                const parent4 = parent3.parentElement;
-                if (parent4)
-                    parent4.classList.add('in');
-                const parent5 = parent4.parentElement;
-                if (parent5)
-                    parent5.classList.add('active');
-            }
-        }
+        // new MetisMenu("#side-menu");
+        // var links = document.getElementsByClassName('side-nav-link-ref');
+        // var matchingMenuItem = null;
+        // for (var i = 0; i < links.length; i++) {
+        //     if (this.props.location.pathname === links[i].pathname) {
+        //         matchingMenuItem = links[i];
+        //         break;
+        //     }
+        // }
+        //
+        // if (matchingMenuItem) {
+        //     matchingMenuItem.classList.add('active');
+        //     var parent = matchingMenuItem.parentElement;
+        //
+        //     // not implemented yet!
+        //     if (parent) {
+        //         parent.classList.add('active');
+        //         const parent2 = parent.parentElement;
+        //         if (parent2) {
+        //             parent2.classList.add('in');
+        //         }
+        //         const parent3 = parent2.parentElement;
+        //         if (parent3) {
+        //             parent3.classList.add('active');
+        //             var childAnchor = parent3.querySelector('.has-dropdown');
+        //             if (childAnchor) childAnchor.classList.add('active');
+        //         }
+        //
+        //         const parent4 = parent3.parentElement;
+        //         if (parent4)
+        //             parent4.classList.add('in');
+        //         const parent5 = parent4.parentElement;
+        //         if (parent5)
+        //             parent5.classList.add('active');
+        //     }
+        // }
     }
 
     render() {
         return (
             <React.Fragment>
-                <div className='left-side-menu' ref={node => this.menuNodeRef = node}>
-                    { this.props.isCondensed ? <SideNavContent/> : <PerfectScrollbar><SideNavContent /></PerfectScrollbar> }
+                <div className='left-side-menu'>
+                    {this.props.isCondensed ? <SideNavContent/> :
+                        <PerfectScrollbar><SideNavContent/></PerfectScrollbar>}
                 </div>
             </React.Fragment>
         );

@@ -31,7 +31,7 @@ describe('test: Model Category', function () {
     });
 
     after(async function () {
-        await mongoose.connection.dropCollection('categories');
+        await mongoose.connection.dropCollection(Category.collection.collectionName);
         mongoose.connection.close();
     });
 });
